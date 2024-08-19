@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """
-implement a get_hyper method that
+Implement a get_hyper method that
 takes the same arguments
 (and defaults) as get_page and
 returns a dictionary containing
-the key-value pairs"""
+the key-value pairs.
+"""
 
 import csv
 import math
@@ -14,7 +15,7 @@ from typing import Tuple, List
 def index_range(page: int, page_size: int) -> Tuple[int, int]:
     """
     Returns:
-        tuple[int, int]: A tuple containing the start index and end index.
+        Tuple[int, int]: A tuple containing the start index and end index.
     """
     start_index = (page - 1) * page_size
     end_index = start_index + page_size
@@ -53,11 +54,8 @@ class Server:
         # Validate page_size
         assert isinstance(page_size, int) and page_size > 0
 
-        try:
-            start_index, end_index = index_range(page, page_size)
-            return dataset[start_index:end_index]
-        except IndexError as e:
-            return []
+        start_index, end_index = index_range(page, page_size)
+        return dataset[start_index:end_index]
 
     def get_hyper(self, page: int = 1, page_size: int = 10) -> dict:
         """Retrieve hypermedia information for pagination.
@@ -66,15 +64,15 @@ class Server:
                 (keys & value).
         """
         page_data = self.get_page(page, page_size)
-        total_pages = len(self.dataset()) // page_size
+        total_pages = math.ceil(len(self.dataset()) / page_size)
 
         hypermedia_dict = {
             "page_size": page_size if page_size <= len(page_data)
             else len(page_data),
             "page": page,
             "data": page_data,
-            "next_page": page + 1 if page >= 0 else None,
-            "prev_page": page - 1 if page >= 1 else None,
+            "next_page": page + 1 if page < total_pages else None,
+            "prev_page": page - 1 if page > 1 else None,
             "total_pages": total_pages
         }
         return hypermedia_dict
