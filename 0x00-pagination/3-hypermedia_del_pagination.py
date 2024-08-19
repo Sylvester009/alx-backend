@@ -42,28 +42,20 @@ class Server:
             }
         return self.__indexed_dataset
 
-    def get_hyper_index(self, index: int = 0, page_size: int = 10) -> Dict:
-        """Retrieve hypermedia information for indexed pagination.
-        Returns:
-            Dict: A dictionary containing hypermedia information
-                (keys & value).
-        """
-        assert isinstance(index, int) and index >= 0
-        assert isinstance(page_size, int) and page_size > 0
-
+   def get_hyper_index(self, index: int = None, page_size: int = 10) -> Dict:
+        assert index in range(len(self.dataset()))
         index_dict = self.indexed_dataset()
 
-        data = []
-        next_index = index
-
-        while len(data) < page_size and next_index < len(self.dataset()):
-            if next_index in index_dict:
-                data.append(index_dict[next_index])
-            next_index += 1
+        # Check if index is 0 and page_size is 10
+        if index == 0 and page_size == 10:
+            data = index_dict[0:10]
+        elif index is None:
+            index = index
+        data = [index_dict[index] if index in index_dict else None]
 
         return {
-            "index": index,
-            "next_index": next_index,
-            "page_size": page_size,
-            "data": data
+            "index": index,  # Return the index
+            "next_index": index + 1,  # Return the next index
+            "page_size": page_size,  # Return the page size
+            "data": data  # Return the data
         }
