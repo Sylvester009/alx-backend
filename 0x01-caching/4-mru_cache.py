@@ -21,13 +21,15 @@ class MRUCache(BaseCaching):
         if key is None or item is None:
             return
 
-        # If the key is already in cache, update it and move it to the end of the list
+        """If the key is already in cache,
+        update it and move it to the end of the list
+        """
         if key in self.caches:
             self.caches.remove(key)
 
         # Check if cache is full
         if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
-            mru_key = self.caches.pop(-1)  # Discard the most recently used item (MRU)
+            mru_key = self.caches.pop(-1)  # Discard the MRU
             del self.cache_data[mru_key]
             print(f"DISCARD: {mru_key}")
 
