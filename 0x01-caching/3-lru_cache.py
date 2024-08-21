@@ -30,7 +30,7 @@ class LRUCache(BaseCaching):
 
         # Check if cache is full
         if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
-            lru_key = self.caches.pop(0) # Discard the least item(LRU)
+            lru_key = self.caches.pop(0)  # Discard the least item(LRU)
             del self.cache_data[lru_key]
             print(f"DISCARD: {lru_key}")
 
