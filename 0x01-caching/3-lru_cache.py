@@ -22,13 +22,15 @@ class LRUCache(BaseCaching):
         if key is None or item is None:
             return
 
-        # If the key is already in cache, update it and move it to the end of the list
+        """If the key is already in cache,
+        update it and move it to the end of the list
+        """
         if key in self.caches:
             self.caches.remove(key)
 
         # Check if cache is full
         if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
-            lru_key = self.caches.pop(0)  # Discard the least recently used item (LRU)
+            lru_key = self.caches.pop(0) # Discard the least item(LRU)
             del self.cache_data[lru_key]
             print(f"DISCARD: {lru_key}")
 
@@ -44,5 +46,5 @@ class LRUCache(BaseCaching):
         # Move the accessed key to the end of the list (most recently used)
         self.caches.remove(key)
         self.caches.append(key)
-        
+
         return self.cache_data.get(key)
