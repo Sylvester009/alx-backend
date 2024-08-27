@@ -2,6 +2,8 @@
 from flask import Flask, render_template, request
 from flask_babel import Babel
 
+""" A flask module that
+Parametrize templates"""
 
 class Config:
     LANGUAGES = ["en", "fr"]
@@ -23,6 +25,7 @@ def get_locale():
 @app.route('/')
 def index():
     return render_template('3-index.html')
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
