@@ -74,7 +74,7 @@ def index():
     timezone = get_timezone()
     now = datetime.now(pytz.timezone(timezone))
     formatted_time = now.strftime('%b %d, %Y, %I:%M:%S %p')  # Adjust format if needed
-    return render_template('7-index.html', current_time=formatted_time)
+    return render_template('index.html', current_time=formatted_time)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
