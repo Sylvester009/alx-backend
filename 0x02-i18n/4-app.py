@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-from flask import Flask, render_template, request
-from flask_babel import Babel, _
-
 """ A flask module that
 force locale with URL parameter"""
+
+from flask import Flask, render_template, request
+from flask_babel import Babel, _
 
 
 class Config:
