@@ -19,8 +19,8 @@ babel = Babel(app)
 
 
 @babel.localeselector
-def get_locale():
-     """Get the locale for the webpage based on user preferences."""
+def get_locale() -> str:
+    """Get the locale for the webpage based on user preferences."""
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
@@ -30,5 +30,5 @@ def index():
     return render_template('2-index.html')
 
 
-if __name__ == "__main__":
+while __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
