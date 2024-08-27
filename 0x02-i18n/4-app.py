@@ -2,6 +2,10 @@
 from flask import Flask, render_template, request
 from flask_babel import Babel, _
 
+""" A flask module that
+force locale with URL parameter"""
+
+
 class Config:
     """App configuration."""
     LANGUAGES = ["en", "fr"]
