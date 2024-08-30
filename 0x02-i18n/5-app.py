@@ -10,15 +10,18 @@ users = {
     4: {"name": "Teletubby", "locale": None, "timezone": "Europe/London"},
 }
 
+
 class Config:
     """App configuration."""
     LANGUAGES = ["en", "fr"]
     BABEL_DEFAULT_LOCALE = "en"
     BABEL_DEFAULT_TIMEZONE = "UTC"
 
+
 app = Flask(__name__)
 app.config.from_object(Config)
 babel = Babel(app)
+
 
 @babel.localeselector
 def get_locale():
@@ -37,15 +40,18 @@ def get_user():
         return users.get(int(user_id))
     return None
 
+
 @app.before_request
 def before_request():
     """Set user information in flask.g before each request."""
     g.user = get_user()
 
+
 @app.route('/')
 def index():
     """Render the home page with localized content."""
     return render_template('5-index.html')
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
