@@ -8,7 +8,6 @@ from flask_babel import Babel
 """ class config that stores the 
 languages, locality and timezone"""
 
-
 class Config:
     LANGUAGES = ["en", "fr"]
     BABEL_DEFAULT_LOCALE = 'en'
