@@ -5,10 +5,10 @@ the Babel object in your app"""
 from flask import Flask, render_template
 from flask_babel import Babel
 
-""" class config that stores the 
-languages, locality and timezone"""
 
 class Config:
+    """ class config that stores the 
+    languages, locality and timezone"""
     LANGUAGES = ["en", "fr"]
     BABEL_DEFAULT_LOCALE = 'en'
     BABEL_DEFAULT_TIMEZONE = 'UTC'
