@@ -5,7 +5,9 @@ from flask_babel import Babel
 """ A flask module that
 Parametrize templates"""
 
+
 class Config:
+    """class for the flask module"""
     LANGUAGES = ["en", "fr"]
     BABEL_DEFAULT_LOCALE = 'en'
     BABEL_DEFAULT_TIMEZONE = 'UTC'
