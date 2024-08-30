@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+"""flask module that access user data"""
 from flask import Flask, render_template, request, g
 from flask_babel import Babel, _
 
@@ -12,7 +13,8 @@ users = {
 
 
 class Config:
-    """App configuration."""
+    """App configuration for the flask
+    module"""
     LANGUAGES = ["en", "fr"]
     BABEL_DEFAULT_LOCALE = "en"
     BABEL_DEFAULT_TIMEZONE = "UTC"
